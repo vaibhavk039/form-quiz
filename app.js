@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const app = express();
+app.use(bodyparser.json());
+
 app.use(bodyparser.urlencoded({ extended: true }));
 app.get("/", function(req, res) {
 
@@ -21,11 +23,15 @@ app.post('/', function(req, res) {
 
 
     const answer = "HyperText Markup Language";
+    const chosen = req.body.q;
 
-    if (req.body.q1 == answer) {
-        res.send("wrong answer " + req.body.q1);
+    if (chosen == answer) {
+        res.send("correct answer");
 
+    } else {
+        res.send("wrong answer");
     }
+
 
 
 
